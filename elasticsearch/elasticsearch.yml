@@ -1,0 +1,36 @@
+cluster.name: "docker-cluster"
+network.host: 0.0.0.0
+#elasticsearch.hosts: [ "http://127.0.0.1:9200" ]
+# transport.host: 127.0.0.1
+# http.host: 0.0.0.0
+cluster.initial_master_nodes: ["es01","es02","es03"]
+
+path:
+  logs: /usr/share/elasticsearch/logs
+  data:
+    - /usr/share/elasticsearch/data/es01
+    - /usr/share/elasticsearch/data/es02
+    - /usr/share/elasticsearch/data/es03
+
+# License
+xpack.license.self_generated.type: basic
+
+bootstrap.memory_lock: true
+
+xpack.security.enabled: true
+
+xpack.security.http.ssl.enabled: true
+
+xpack.security.transport.ssl.enabled: true
+
+
+#certificate http
+xpack.security.http.ssl.certificate_authorities: certs/ca/ca.crt
+xpack.security.http.ssl.verification_mode: certificate
+
+#certificate transport
+xpack.security.transport.ssl.certificate_authorities: certs/ca/ca.crt
+xpack.security.transport.ssl.verification_mode: certificate
+
+# Monitoring
+xpack.monitoring.collection.enabled: true
